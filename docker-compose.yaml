@@ -1,0 +1,30 @@
+version: '3.3'
+
+services:
+  db:
+     build:
+       context: ./db
+       dockerfile: Dockerfile
+     image: ratestask
+#     volumes:
+#       - db_data:/var/lib/postgresql/data/
+     restart: always
+     env_file:
+       - .env
+
+  ratestask-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    image: ratestask-api:latest
+    command: bash -c "python manage.py migrate rate --fake && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    restart: always
+    env_file:
+      - .env
+
+#volumes:
+#    db_data:
