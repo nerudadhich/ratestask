@@ -19,7 +19,7 @@ from rate import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('rates/', views.get_prices_list),
+    path('rates', views.get_prices_list),
     path('rates_null', views.get_prices_list_with_null),
     path('price', views.create_prices_view)
 ]

@@ -1,7 +1,7 @@
 ports_query = """
     WITH ports AS (
         WITH RECURSIVE c AS (
-            SELECT '{port}' AS code UNION ALL SELECT r.slug
+            SELECT '{port}'::varchar AS code UNION ALL SELECT r.slug
             FROM regions AS r JOIN c ON c.code = r.parent_slug
         ) (
             SELECT code from ports where code='{port}' or parent_slug

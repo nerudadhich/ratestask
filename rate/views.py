@@ -52,7 +52,6 @@ def create_prices_view(request):
     """
     # todo: this block can be moved into custom exception handler middleware
     # https://www.django-rest-framework.org/api-guide/exceptions/
-
     try:
         is_created, message = create_prices(
             request.data, request.GET.get('currency', 'USD'))
