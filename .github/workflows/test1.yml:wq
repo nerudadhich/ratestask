@@ -1,0 +1,19 @@
+name: Test1
+
+on: [push]
+
+jobs:
+  Test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v2
+
+    - name: Install Python 3
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.9
+
+    - name: Run generator tests
+      run: cd generators && python merge_test.py
